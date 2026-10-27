@@ -3,15 +3,15 @@
   "feeds": [
     {
       "slug": "games",
-      "title": "示例：玩过的游戏",
-      "users": ["hiyoko91"],
+      "title": "友邻玩过的游戏",
+      "users": ["visonsann", "kaede7", "327830", "858659", "176200", "tides_", "637213"],
       "subject_type": "4",
       "type": "2"
     },
     {
       "slug": "books",
-      "title": "示例：读过的书籍",
-      "users": ["sai"],
+      "title": "友邻读过的书籍",
+      "users": ["shameimaru_aya", "aeroblast", "710354", "yamatonadesiko"],
       "subject_type": "1",
       "type": "2"
     }
