@@ -1,0 +1,19 @@
+{
+  "base": "http://localhost:1200",
+  "feeds": [
+    {
+      "title": "友邻玩过的游戏",
+      "users": ["hiyoko91", "sai"],
+      "subject_type": "4",
+      "type": "2",
+      "split": false
+    },
+    {
+      "title": "友邻读过的书籍",
+      "users": ["sai"],
+      "subject_type": "1",
+      "type": "2",
+      "split": false
+    }
+  ]
+}

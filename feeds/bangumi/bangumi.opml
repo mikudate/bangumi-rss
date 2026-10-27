@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Bangumi 收藏 RSS</title>
+    <dateCreated>Tue, 27 Oct 2026 08:05:57 +0000</dateCreated>
+  </head>
+  <body>
+    <outline text="示例：玩过的游戏" title="示例：玩过的游戏" type="rss" xmlUrl="https://mikudate.github.io/bangumi-rss/bangumi/games.xml" htmlUrl="https://bgm.tv/game/list/hiyoko91/collect" />
+    <outline text="示例：读过的书籍" title="示例：读过的书籍" type="rss" xmlUrl="https://mikudate.github.io/bangumi-rss/bangumi/books.xml" htmlUrl="https://bgm.tv/book/list/sai/collect" />
+  </body>
+</opml>

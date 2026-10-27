@@ -1,0 +1,64 @@
+name: refresh-bangumi-feeds
+
+on:
+  schedule:
+    - cron: '0 1 * * *' # 01:00 UTC = 09:00 Asia/Shanghai
+  workflow_dispatch:
+  push:
+    paths:
+      - 'bangumi-feeds.json'
+      - 'tools/bangumi_collections_feed.py'
+      - '.github/workflows/refresh.yml'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate feeds
+        run: |
+          REPO="${{ github.event.repository.name }}"
+          OWNER="${{ github.repository_owner }}"
+          if [ "$REPO" = "$OWNER.github.io" ]; then
+            BASE="https://$OWNER.github.io"
+          else
+            BASE="https://$OWNER.github.io/$REPO"
+          fi
+          python tools/bangumi_collections_feed.py \
+            --config bangumi-feeds.json \
+            --out-dir feeds/bangumi \
+            --opml feeds/bangumi/bangumi.opml \
+            --base-url "$BASE"
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feeds
+          git diff --staged --quiet || (git commit -m "chore: refresh bangumi feeds" && git push)
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: feeds
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
