@@ -183,6 +183,18 @@ def read_json(url: str, fixture_dir: str | None, fixture_name: str | None) -> di
         return json.loads(response.read().decode("utf-8"))
 
 
+def resolve_username(username: str) -> str:
+    """Bangumi API v0 rejects some numeric IDs; the website redirects them to the username."""
+    try:
+        request = urllib.request.Request(f"https://bgm.tv/user/{urllib.parse.quote(username)}", headers={"User-Agent": USER_AGENT})
+        with urllib.request.urlopen(request, timeout=30) as response:
+            final_url = response.geturl()
+        candidate = final_url.rstrip("/").split("/")[-1]
+        return candidate or username
+    except Exception:  # noqa: BLE001
+        return username
+
+
 def get_user(username: str, fixture_dir: str | None) -> dict:
     try:
         data = read_json(f"{API}/v0/users/{urllib.parse.quote(username)}", fixture_dir, f"{username}_user.json")
@@ -193,6 +205,9 @@ def get_user(username: str, fixture_dir: str | None) -> dict:
             "avatar": normalize_image(avatar.get("large") or avatar.get("medium")),
         }
     except Exception as error:  # noqa: BLE001
+        resolved = resolve_username(username)
+        if resolved != username:
+            return get_user(resolved, fixture_dir)
         print(f"  ! user {username}: {error}", file=sys.stderr)
         return {"username": username, "nickname": username, "avatar": ""}
 
@@ -240,13 +255,13 @@ def build_feed_xml(feed: dict, base_url: str, limit: int, fixture_dir: str | Non
     for username in users:
         user = get_user(username, fixture_dir)
         try:
-            items = get_collections(username, subject_type, collection_type, limit, fixture_dir)
+            items = get_collections(user["username"], subject_type, collection_type, limit, fixture_dir)
         except Exception as error:  # noqa: BLE001
-            print(f"  ! collections {username}: {error}", file=sys.stderr)
+            print(f"  ! collections {user['username']}: {error}", file=sys.stderr)
             time.sleep(delay)
             continue
         results.append({"user": user, "items": items})
-        print(f"  - {username}: {len(items)} items")
+        print(f"  - {user['username']}: {len(items)} items")
         time.sleep(delay)
 
     if not results:

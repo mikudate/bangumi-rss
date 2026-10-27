@@ -48,26 +48,32 @@ https://mikudate.github.io/bangumi-rss/bangumi/books.xml
 
 ---
 
-## 现在里面是示例用户，怎么换成你的
+## 现在已经是你的用户
 
-现在 `bangumi-feeds.json` 里是示例用户 `hiyoko91`（游戏）和 `sai`（书籍）。换成你的收藏：
+`bangumi-feeds.json` 已经填好：
+
+- **游戏 8 人**：`hiyoko91`、`visonsann`、`kaede7`、`youl`、`858659`、`176200`、`tides_`、`637213`
+- **书籍 4 人**：`shameimaru_aya`、`aeroblast`、`710354`、`yamatonadesiko`
+
+其中 `youl` 就是收藏页里的 `327830`（数字 ID 在 API 里会 404，已经换成用户名）。
+
+### 加人 / 删人
 
 1. 打开 <https://github.com/mikudate/bangumi-rss/blob/main/bangumi-feeds.json>
 2. 点右上角铅笔图标 **Edit this file**
-3. 找到 `"users": ["hiyoko91"]`，把 `hiyoko91` 换成你的 Bangumi 用户 id
-4. 多个用户用英文逗号隔开：
+3. 在对应的 `users` 数组里加或删，例如：
 
 ```json
-"users": ["user1", "user2", "user3"]
+"users": ["hiyoko91", "visonsann", "kaede7"]
 ```
 
-5. 拉到页面下面，点 **Commit changes**
+4. 拉到页面下面，点 **Commit changes**
 
 提交后 Actions 会自动跑一次；也可以去 Actions 页面手动 **Run workflow**。
 
 ### 用户 id 在哪里？
 
-打开你的收藏页，地址栏长这样：
+打开收藏页，地址栏长这样：
 
 ```text
 https://bgm.tv/game/list/hiyoko91/collect

@@ -2,10 +2,10 @@
 <opml version="2.0">
   <head>
     <title>Bangumi 收藏 RSS</title>
-    <dateCreated>Tue, 27 Oct 2026 08:17:18 +0000</dateCreated>
+    <dateCreated>Tue, 27 Oct 2026 08:25:17 +0000</dateCreated>
   </head>
   <body>
-    <outline text="友邻玩过的游戏" title="友邻玩过的游戏" type="rss" xmlUrl="https://mikudate.github.io/bangumi-rss/bangumi/games.xml" htmlUrl="https://bgm.tv/game/list/visonsann/collect" />
+    <outline text="友邻玩过的游戏" title="友邻玩过的游戏" type="rss" xmlUrl="https://mikudate.github.io/bangumi-rss/bangumi/games.xml" htmlUrl="https://bgm.tv/game/list/hiyoko91/collect" />
     <outline text="友邻读过的书籍" title="友邻读过的书籍" type="rss" xmlUrl="https://mikudate.github.io/bangumi-rss/bangumi/books.xml" htmlUrl="https://bgm.tv/book/list/shameimaru_aya/collect" />
   </body>
 </opml>
