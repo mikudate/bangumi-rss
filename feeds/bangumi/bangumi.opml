@@ -2,7 +2,7 @@
 <opml version="2.0">
   <head>
     <title>Bangumi 收藏 RSS</title>
-    <dateCreated>Tue, 03 Nov 2026 07:26:28 +0000</dateCreated>
+    <dateCreated>Wed, 04 Nov 2026 07:08:24 +0000</dateCreated>
   </head>
   <body>
     <outline text="友邻玩过的游戏" title="友邻玩过的游戏" type="rss" xmlUrl="https://mikudate.github.io/bangumi-rss/bangumi/games.xml" htmlUrl="https://bgm.tv/game/list/hiyoko91/collect" />
